@@ -1,0 +1,28 @@
+-- auto-generated definition
+create table run
+(
+  id        int auto_increment
+    primary key,
+  date      date          null,
+  miles     double        null,
+  location  varchar(32)   null,
+  elevation double        null,
+  hours     int default 0 null,
+  minute    int default 0 null,
+  seconds   int default 0 null,
+  pace      double        null,
+  effort    int           null,
+  maxHR     int           null,
+  maxSpeed  double        null
+);
+
+
+CREATE TABLE `location` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+   `name` varchar(255) DEFAULT NULL,
+   `town` varchar(255) DEFAULT NULL,
+   `state` varchar(255) DEFAULT NULL,
+    PRIMARY KEY (`id`));
+
+ALTER TABLE run ADD COLUMN pace double;
+ALTER TABLE run ADD COLUMN effort int;
