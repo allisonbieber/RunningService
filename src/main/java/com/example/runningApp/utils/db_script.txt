@@ -1,28 +1,17 @@
--- auto-generated definition
-create table run
-(
-  id        int auto_increment
-    primary key,
-  date      date          null,
-  miles     double        null,
-  location  varchar(32)   null,
-  elevation double        null,
-  hours     int default 0 null,
-  minute    int default 0 null,
-  seconds   int default 0 null,
-  pace      double        null,
-  effort    int           null,
-  maxHR     int           null,
-  maxSpeed  double        null
-);
+CREATE DATABASE running
 
+USE running
 
-CREATE TABLE `location` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-   `name` varchar(255) DEFAULT NULL,
-   `town` varchar(255) DEFAULT NULL,
-   `state` varchar(255) DEFAULT NULL,
+CREATE TABLE `events` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+   `date` date DEFAULT NULL,
+   `miles` DOUBLE DEFAULT 0,
+   `elevation` DOUBLE DEFAULT 0,
+   `hours` INT DEFAULT 0,
+   `minutes` INT DEFAULT 0,
+   `seconds` INT DEFAULT 0,
+   `pace` DOUBLE DEFAULT 0,
+   `effort` INT DEFAULT 0,
+   `max_hr` INT DEFAULT 0,
+   `max_speed` DOUBLE DEFAULT 0
     PRIMARY KEY (`id`));
-
-ALTER TABLE run ADD COLUMN pace double;
-ALTER TABLE run ADD COLUMN effort int;

@@ -11,7 +11,7 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="run")
+@Table(name="events")
 
 /**
  * Defines what the entity 'run'
@@ -52,11 +52,11 @@ public class RunEntity {
 
   @Nullable
   @Column(name="effort")
-  private int effort;
+  private Integer effort;
 
   @Nullable
   @Column(name="max_hr")
-  private int max_hr;
+  private Integer max_hr;
 
   @Nullable
   @Column(name = "max_speed")
