@@ -14,7 +14,7 @@ import javax.persistence.Table;
 @Table(name="events")
 
 /**
- * Defines what the entity 'run'
+ * Defines what the entity 'run' ocntains
  */
 public class RunEntity {
   @Id
