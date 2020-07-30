@@ -4,5 +4,6 @@ local database, 'run' and load them into a table in order to analyze the data. T
 currently in progress. 
 
 Sources Used: 
-** https://medium.com/@mukundmadhav/build-and-deploy-react-app-with-spring-boot-and-mysql-6f888eb0c600
+
+https://medium.com/@mukundmadhav/build-and-deploy-react-app-with-spring-boot-and-mysql-6f888eb0c600
 
