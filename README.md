@@ -6,18 +6,19 @@ currently in progress.
 # Database
 
 The database, 'events' that I have created using MySQL represents a single 'run' event. The features are as follows: 
-  * Miles
-  * Elevation
-  * Hours
-  * Minutes
-  * Seconds 
-  * Pace
-  * Relative Effort
-  * Average Heart Rate
-  * Max Speed
-  * Date
+  * Miles (double) 
+  * Elevation (double)
+  * Hours (int)
+  * Minutes (int)
+  * Seconds (int)
+  * Pace (double)
+  * Relative Effort (int)
+  * Average Heart Rate (int)
+  * Max Speed (double)
+  * Date (datetime)
+  
 
-Sources Used: 
+# Sources Used
 
-https://medium.com/@mukundmadhav/build-and-deploy-react-app-with-spring-boot-and-mysql-6f888eb0c600
+* https://medium.com/@mukundmadhav/build-and-deploy-react-app-with-spring-boot-and-mysql-6f888eb0c600
 
