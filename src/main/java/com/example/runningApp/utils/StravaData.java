@@ -5,13 +5,10 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import java.sql.Timestamp;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.sql.Date;
-import java.util.Calendar;
-import java.util.GregorianCalendar;
-import java.util.Locale;
 
 public class StravaData {
 
@@ -31,7 +28,7 @@ public class StravaData {
       connection = DriverManager.getConnection(jdbcURL, username, password);
       connection.setAutoCommit(false);
 
-      String sql = "INSERT INTO events (id, date, miles, location, elevation, hours, minutes, seconds) VALUES (?, ?, ?, ?, ?)";
+      String sql = "INSERT INTO events (miles, elevation, hours, minutes, seconds, pace, effort, avg_hr, date) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
       PreparedStatement statement = connection.prepareStatement(sql);
 
       BufferedReader lineReader = new BufferedReader(new FileReader(file));
@@ -39,61 +36,61 @@ public class StravaData {
 
       lineReader.readLine();
 
+      int count = 0;
+
       while ((line = lineReader.readLine()) != null) {
+        count++;
 
         String[] tokens = line.split(",(?=([^\"]*\"[^\"]*\")*[^\"]*$)");
 
-        Date date = fixDate(tokens[1]);
-        int[] times = parseTime(Integer.parseInt(tokens[2]));
+        double miles = Double.parseDouble(tokens[3]) * 0.621371;
+
+        double elevation = 0.0;
+        String elevationStr  = tokens[8];
+        if (!elevationStr.isEmpty()) {
+          elevation = Double.parseDouble(tokens[8]);
+        }
+
+        Timestamp date = fixDate(tokens[1]);
+
+        int[] times = parseTime(Integer.parseInt(tokens[5]));
         int hours = times[0];
         int minutes = times[1];
         int seconds = times[2];
-        double miles = Double.parseDouble(tokens[3]) * 0.621371;
 
-        statement.setDate(1, date);
+        double pace = (Integer.parseInt(tokens[5]) / miles) / 60;
 
-        System.out.println(miles);
+        int effort = Integer.parseInt(tokens[4]);
 
+        String hr  = tokens[9];
+        int avg_hr = 0;
+        if (!hr.isEmpty()) {
+          double avg_hr_double = Double.parseDouble(hr);
+          avg_hr = (int) Math.round(avg_hr_double);
+        }
 
-       // System.out.println(line);
-
-
-      }
-
-    //  Scanner scanner = new Scanner(new File(file));
-
-      /*lineReader.readLine(); // skip header line
-
-      while ((lineText = lineReader.readLine()) != null) {
-        String[] data = lineText.split(",");
-        String courseName = data[0];
-        String studentName = data[1];
-        String timestamp = data[2];
-        String rating = data[3];
-        String comment = data.length == 5 ? data[4] : "";
-
-        statement.setString(1, courseName);
-        statement.setString(2, studentName);
-
-        Timestamp sqlTimestamp = Timestamp.valueOf(timestamp);
-        statement.setTimestamp(3, sqlTimestamp);
-
-        Float fRating = Float.parseFloat(rating);
-        statement.setFloat(4, fRating);
-
-        statement.setString(5, comment);
-
-        statement.addBatch();
+        statement.setDouble(1, miles);
+        statement.setDouble(2, elevation);
+        statement.setInt(3, hours);
+        statement.setInt(4, minutes);
+        statement.setInt(5, seconds);
+        statement.setDouble(6, pace);
+        statement.setInt(7, effort);
+        statement.setInt(8, avg_hr);
+        statement.setTimestamp(9, date);
 
         if (count % batchSize == 0) {
           statement.executeBatch();
         }
+
+        statement.addBatch();
+
       }
 
-      lineReader.close();*/
+      lineReader.close();
 
       // execute the remaining queries
-    //  statement.executeBatch();
+      statement.executeBatch();
 
       connection.commit();
       connection.close();
@@ -112,10 +109,9 @@ public class StravaData {
 
   }
 
-  private static Date fixDate(String date) {
+  private static Timestamp fixDate(String date) {
 
     date = date.substring(1, date.length()-1);
-    System.out.println("before: " + date);
 
     String[] dateParts = date.split(",");
 
@@ -143,7 +139,11 @@ public class StravaData {
       time = time - 25200000;
       dt.setTime(time);
 
-      return dt;
+      java.sql.Timestamp param = new java.sql.Timestamp(dt.getTime());
+
+      return param;
+
+     // return sqlDate;
 
     } catch (ParseException e) {
       e.printStackTrace();

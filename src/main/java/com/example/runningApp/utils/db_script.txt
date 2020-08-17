@@ -4,7 +4,7 @@ USE running
 
 CREATE TABLE `events` (
   `id` INT NOT NULL AUTO_INCREMENT,
-   `date` date DEFAULT NULL,
+   `date` datetime DEFAULT NULL,
    `miles` DOUBLE DEFAULT 0,
    `elevation` DOUBLE DEFAULT 0,
    `hours` INT DEFAULT 0,
@@ -12,6 +12,5 @@ CREATE TABLE `events` (
    `seconds` INT DEFAULT 0,
    `pace` DOUBLE DEFAULT 0,
    `effort` INT DEFAULT 0,
-   `max_hr` INT DEFAULT 0,
-   `max_speed` DOUBLE DEFAULT 0
+   `avg_hr` INT DEFAULT 0,
     PRIMARY KEY (`id`));
