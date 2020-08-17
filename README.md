@@ -6,16 +6,15 @@ currently in progress.
 # Database
 
 The database, 'events' that I have created using MySQL represents a single 'run' event. The features are as follows: 
-  * Miles (double) 
-  * Elevation (double)
-  * Hours (int)
-  * Minutes (int)
-  * Seconds (int)
-  * Pace (double)
-  * Relative Effort (int)
-  * Average Heart Rate (int)
-  * Max Speed (double)
-  * Date (datetime)
+  * Miles (double) - The number of miles ran
+  * Elevation (double) - The total elevation gain
+  * Hours (int) - The hours taken to complete the run
+  * Minutes (int) - The minutes, after deducting hours, taken to complete the run
+  * Seconds (int) - The seconds, after deducting hours and minutes, taken to complete the run
+  * Pace (double) - The average pace during the run
+  * Relative Effort (int) - The relative cardiovascular effort in relation to previous activities completed
+  * Average Heart Rate (int) - The average heart rate for the duration of the run
+  * Date (datetime) - The date of the run
   
 
 # Sources Used
