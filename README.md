@@ -20,4 +20,5 @@ The database, 'events' that I have created using MySQL represents a single 'run'
 # Sources Used
 
 * https://medium.com/@mukundmadhav/build-and-deploy-react-app-with-spring-boot-and-mysql-6f888eb0c600
+* https://developer.okta.com/blog/2018/07/19/simple-crud-react-and-spring-boot
 
