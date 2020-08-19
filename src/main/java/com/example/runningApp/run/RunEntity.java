@@ -3,6 +3,8 @@ package com.example.runningApp.run;
 import com.sun.istack.Nullable;
 
 import java.sql.Date;
+import java.sql.Timestamp;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -24,7 +26,7 @@ public class RunEntity {
 
   @Nullable
   @Column(name="date")
-  private Date date;
+  private Timestamp date;
 
   @Nullable
   @Column(name="miles")
@@ -55,12 +57,8 @@ public class RunEntity {
   private Integer effort;
 
   @Nullable
-  @Column(name="max_hr")
+  @Column(name="avg_hr")
   private Integer max_hr;
-
-  @Nullable
-  @Column(name = "max_speed")
-  private double max_speed;
 
   @Override
   public String toString() {
