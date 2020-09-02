@@ -1,13 +1,14 @@
 package com.example.runningApp.run;
 
-import java.util.List;
+import org.springframework.data.jpa.repository.JpaRepository;
 
+import java.util.List;
 
 /**
  * Database Access Object
  * Provides logical access to the database
  */
-public interface RunDAO {
+public interface RunRepository {
 
   List<RunEntity> get();
 

@@ -2,7 +2,6 @@ package com.example.runningApp.run;
 
 import com.sun.istack.Nullable;
 
-import java.sql.Date;
 import java.sql.Timestamp;
 
 import javax.persistence.Column;
@@ -16,7 +15,7 @@ import javax.persistence.Table;
 @Table(name="events")
 
 /**
- * Defines what the entity 'run' ocntains
+ * Defines what the entity 'run' contains
  */
 public class RunEntity {
   @Id
@@ -56,9 +55,8 @@ public class RunEntity {
   @Column(name="effort")
   private Integer effort;
 
-  @Nullable
   @Column(name="avg_hr")
-  private Integer max_hr;
+  private Integer avg_hr;
 
   @Override
   public String toString() {

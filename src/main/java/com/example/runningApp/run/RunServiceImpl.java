@@ -11,27 +11,27 @@ import javax.transaction.Transactional;
 public class RunServiceImpl implements RunService {
 
   @Autowired
-  private RunDAO runDAO;
+  private RunRepository runRepository;
 
 
   @Transactional
   @Override
   public List<RunEntity> get() {
-    return runDAO.get();
+    return runRepository.get();
   }
 
   @Override
   public RunEntity get(int id) {
-    return runDAO.get(id);
+    return runRepository.get(id);
   }
 
   @Override
   public void save(RunEntity run) {
-    runDAO.save(run);
+    runRepository.save(run);
   }
 
   @Override
   public void delete(int id) {
-    runDAO.delete(id);
+    runRepository.delete(id);
   }
 }

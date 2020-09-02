@@ -5,20 +5,21 @@ import javax.persistence.EntityManager;
 import org.hibernate.query.Query;
 import org.hibernate.Session;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
-
 @Repository
-public class RunDAOImpl implements RunDAO {
+public class RunRepositoryImpl implements RunRepository {
 
   @Autowired
   private EntityManager entityManager;
 
   @Override
   public List<RunEntity> get() {
-    String q = "FROM RunEntity ";
+  //  String q = "SELECT miles, elevation, hours, minutes, seconds, pace, effort, avg_hr, date FROM RunEntity";
+    String q = "FROM RunEntity";
     Session currSession = entityManager.unwrap(Session.class);
     Query<RunEntity> query = currSession.createQuery(q, RunEntity.class);
     return query.getResultList();
@@ -42,4 +43,5 @@ public class RunDAOImpl implements RunDAO {
     RunEntity run = currSession.get(RunEntity.class, id);
     currSession.delete(run);
   }
+
 }
