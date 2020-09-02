@@ -1,6 +1,6 @@
 package com.example.runningApp.run;
 
-import com.sun.istack.Nullable;
+import com.fasterxml.jackson.annotation.JsonView;
 
 import java.sql.Timestamp;
 
@@ -10,6 +10,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.swing.text.View;
 
 @Entity
 @Table(name="events")
@@ -20,41 +21,43 @@ import javax.persistence.Table;
 public class RunEntity {
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
+  @JsonView(RunEntity.class)
   @Column(name="id")
   private Integer id;
 
-  @Nullable
+  @JsonView(RunEntity.class)
   @Column(name="date")
   private Timestamp date;
 
-  @Nullable
+  @JsonView(RunEntity.class)
   @Column(name="miles")
   private Double miles;
 
-  @Nullable
+  @JsonView(RunEntity.class)
   @Column(name="elevation")
   private double elevation;
 
-  @Nullable
+  @JsonView(RunEntity.class)
   @Column(name="hours")
   private int hours;
 
-  @Nullable
+  @JsonView(RunEntity.class)
   @Column(name="minutes")
   private int minutes;
 
-  @Nullable
+  @JsonView(RunEntity.class)
   @Column(name="seconds")
   private int seconds;
 
-  @Nullable
+  @JsonView(RunEntity.class)
   @Column(name="pace")
   private double pace;
 
-  @Nullable
+  @JsonView(RunEntity.class)
   @Column(name="effort")
   private Integer effort;
 
+  @JsonView(RunEntity.class)
   @Column(name="avg_hr")
   private Integer avg_hr;
 
@@ -65,10 +68,9 @@ public class RunEntity {
 
   }
 
+  // Getters
   public Integer getId() {
     return id;
   }
-
-  // Getters and setters
 
 }
